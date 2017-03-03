@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import AddTodo from './AddTodo';
+import TodoList from './TodoList';
+import Filter from './Filter';
 
 class App extends Component {
   render() {
@@ -11,7 +13,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <AddTodo />
+        <AddTodo/>
+        <TodoList/>
+        <Filter/>
       </div>
     );
   }
