@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux';
 
-let nextTodoId = 0;
-
 //------------------------------------actions
 const ADD_TODO = 'ADD_TODO';
 const TOGGLE_TODO = 'TOGGLE_TODO';
@@ -16,30 +14,38 @@ function visibilityFilter(state = 'SHOW_ALL', action) {
       return state;
   }
 }
-
-function todos(state = [], action) {
+const todo = (state = {}, action) => {
   switch (action.type) {
-    case ADD_TODO:
-      return [
-        ...state,
-        {
-          text: action.text,
-          completed: false
-        }
-      ];
-    case TOGGLE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          });
-        }
-        return todo;
+    case 'ADD_TODO':
+      return {
+        id: action.id,
+        text: action.text,
+        completed: false
+      };
+    case 'TOGGLE_TODO':
+      if (state.id !== action.id) {
+        return state;
+      }
+
+      return Object.assign({}, state, {
+        completed: !state.completed
       });
+
     default:
       return state;
   }
-}
+};
+
+const todos = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [...state, todo(undefined, action)];
+    case 'TOGGLE_TODO':
+      return state.map(t => todo(t, action));
+    default:
+      return state;
+  }
+};
 
 const rootReducer = combineReducers({
   visibilityFilter,
@@ -49,6 +55,7 @@ const rootReducer = combineReducers({
 export default rootReducer;
 
 //------------------------------------action creators
+let nextTodoId = 0;
 export const addTodo = text => {
   return {
     type: 'ADD_TODO',
