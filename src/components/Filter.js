@@ -1,17 +1,21 @@
 import React from 'react';
+import FilterLink from '../containers/FilterLink';
 
 const Filter = () => (
   <p>
     Show:
     {' '}
-
-    All
+    <FilterLink filter="SHOW_ALL">
+      All
+    </FilterLink>
     {', '}
-
-    Active
+    <FilterLink filter="SHOW_ACTIVE">
+      Active
+    </FilterLink>
     {', '}
-
-    Completed
+    <FilterLink filter="SHOW_COMPLETED">
+      Completed
+    </FilterLink>
   </p>
 );
 
