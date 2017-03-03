@@ -7,58 +7,58 @@ const VisibilityFilters = {
 };
 let nextTodoId = 0;
 
-//actions
+//------------------------------------actions
 const ADD_TODO = 'ADD_TODO';
 const TOGGLE_TODO = 'TOGGLE_TODO';
 const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
-//reducers
-const todo = (state = {}, action) => {
+
+//------------------------------------reducers
+function visibilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
-    case 'ADD_TODO':
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false
-      }
-    case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state
-      }
-
-      return Object.assign({}, state, {
-        completed: !state.completed
-      })
-
+    case SET_VISIBILITY_FILTER:
+      return action.filter
     default:
       return state
   }
 }
 
-const todos = (state = [], action) => {
+function todos(state = [], action) {
   switch (action.type) {
-    case 'ADD_TODO':
+    case ADD_TODO:
       return [
         ...state,
-        todo(undefined, action)
+        {
+          text: action.text,
+          completed: false
+        }
       ]
-    case 'TOGGLE_TODO':
-      return state.map(t =>
-        todo(t, action)
-      )
+    case TOGGLE_TODO:
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, {
+            completed: !todo.completed
+          })
+        }
+        return todo
+      })
     default:
       return state
   }
 }
 
-export default todos
+const rootReducer = combineReducers({
+  visibilityFilter,
+  todos
+})
 
-//action creators
+export default rootReducer;
+
+//------------------------------------action creators
 export function addTodo(text) {
   return {
     type: 'ADD_TODO',
     id: nextTodoId++,
-    completed: false,
     text
   };
 }

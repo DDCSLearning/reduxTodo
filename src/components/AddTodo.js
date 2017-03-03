@@ -2,7 +2,6 @@ import React from 'react';
 
 let AddTodo = () => {
   let input;
-
   return (
     <div>
       <form
