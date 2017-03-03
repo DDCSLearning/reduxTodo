@@ -20,7 +20,7 @@ let AddTodo = () => {
           }}
         />
         <button type="submit">
-          Add Todo
+          Add Item
         </button>
       </form>
     </div>
