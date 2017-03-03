@@ -1,6 +1,6 @@
 import React from 'react';
 
-let AddTodo = () => {
+let AddTodo = ({ onSubmit }) => {
   let input;
   return (
     <div>
@@ -10,6 +10,7 @@ let AddTodo = () => {
           if (!input.value.trim()) {
             return;
           }
+          onSubmit(input.value);
           input.value = '';
         }}
       >

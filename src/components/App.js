@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
-import AddTodo from '../containers/AddTodo';
+import AddTodoForm from '../containers/AddTodoForm';
 import VisibleTodoList from '../containers/DisplayTodoList';
 import Filter from './Filter';
 
@@ -13,7 +13,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <AddTodo/>
+        <AddTodoForm/>
         <VisibleTodoList/>
         <Filter/>
       </div>
