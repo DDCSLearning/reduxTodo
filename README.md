@@ -7,7 +7,10 @@
 
 Playing around with React and Redux
 
+See App here:
 
-Read my [article](https://github.com/DDCreationStudios/Writing/blob/master/articles/TodoReactRedux.md)
+https://ddcslearning.github.io/reduxTodo/
 
-Watch [Live]()
+Read my article here:
+
+https://github.com/DDCreationStudios/Writing/blob/master/articles/TodoReactRedux.md
